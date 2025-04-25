@@ -40,6 +40,6 @@ pewdiepie_rank = df[df['Username'] == 'PewDiePie'].index[0]
 print("Top 10 Most Similar Channels to PewDiePie:")
 print(get_top_similar_channels(pewdiepie_rank, df, similarity_matrix))
 
-tseries_rank = df[df['Username'] == 'T-Series'].index[0]
-print("Top 10 Most Similar Channels to T-Series:")
-print(get_top_similar_channels(tseries_rank, df, similarity_matrix))
+youtube_movies_rank = df[df['Username'] == 'YouTube Movies'].index[0]
+print("Top 10 Most Similar Channels to YouTube Movies:")
+print(get_top_similar_channels(youtube_movies_rank, df, similarity_matrix))
