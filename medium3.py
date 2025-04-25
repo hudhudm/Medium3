@@ -27,3 +27,19 @@ top_10_similar_channels = df.iloc[top_10_similar_ranks].copy()
 top_10_similar_channels.loc[:, 'Similarity'] = similarity_score[top_10_similar_ranks]
 
 print(top_10_similar_channels[['Ranking', 'Username', 'Subscribers', 'Views', 'Uploads', 'Similarity']])
+
+
+def get_top_similar_channels(query_rank, df, similarity_matrix, top_n=10):
+    similarity_score = similarity_matrix[query_rank]
+    top_similar_ranks = similarity_score.argsort()[-(top_n+1):-1][::-1]
+    top_similar_channels = df.iloc[top_similar_ranks].copy()
+    top_similar_channels.loc[:, 'Similarity'] = similarity_score[top_similar_ranks]
+    return top_similar_channels[['Ranking', 'Username', 'Subscribers', 'Views', 'Uploads', 'Similarity']]
+
+pewdiepie_rank = df[df['Username'] == 'PewDiePie'].index[0]
+print("Top 10 Most Similar Channels to PewDiePie:")
+print(get_top_similar_channels(pewdiepie_rank, df, similarity_matrix))
+
+tseries_rank = df[df['Username'] == 'T-Series'].index[0]
+print("Top 10 Most Similar Channels to T-Series:")
+print(get_top_similar_channels(tseries_rank, df, similarity_matrix))
